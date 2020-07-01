@@ -1,6 +1,6 @@
 - name: Instalar apache y git
   yum:
-    name: "{{item}}"
+    name: "{{ item }}"
     state: present
   loop:
     - httpd
@@ -10,6 +10,7 @@
   git:
     repo: https://github.com/msaunevale/proyecto-paracas-2013.git
     dest: /var/www/html
+    version: "master"
 
 - name: Copiar de archivo httpd.conf
   template:
@@ -21,4 +22,4 @@
   systemd:
     name: httpd
     state: started
-    enabled: yes 
+    enabled: yes

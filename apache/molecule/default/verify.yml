@@ -4,6 +4,12 @@
 - name: Verify
   hosts: all
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+    - name: Validar el servicio de Apache
+      service:
+        name: httpd
+        state: started
+
+    - name: Validar la respuesta de servicio de Apache
+      uri:
+        url: "http://{{ ansible_default_ipv4.address }}/"
+        status_code: 200
